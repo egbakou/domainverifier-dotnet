@@ -8,6 +8,7 @@
         <AccelerateBuildsInVisualStudio>true</AccelerateBuildsInVisualStudio>
         <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
         <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
+        <NoWarn>$(NoWarn);S2589</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>
