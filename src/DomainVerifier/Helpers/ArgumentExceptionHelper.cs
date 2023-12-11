@@ -11,5 +11,13 @@ namespace DomainVerifier.Helpers
                 throw new ArgumentException($"The parameter '{paramName}' cannot be null or empty.");
             }
         }
+        
+        public static void ThrowIfNotLongEnough(int actualLength, int minimumLength, string paramName)
+        {
+            if (actualLength < minimumLength)
+            {
+                throw new ArgumentException($"The parameter '{paramName}' cannot be less than {minimumLength}.");
+            }
+        }
     }
 }
