@@ -1,22 +1,22 @@
-using System.Linq;
-using System.Threading.Tasks;
 using DnsClient;
 using DomainVerifier.Helpers;
 using DomainVerifier.Interfaces;
 using DomainVerifier.Settings;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace DomainVerifier.Services
 {
     public class DnsRecordsVerifier : IDnsRecordsVerifier
     {
         private readonly ILookupClient _lookupClient;
-        private readonly TxtRecordSettings? _txtRecordOptions;
+        private readonly TxtRecordSettings? _txtRecordSettings;
         private readonly CnameRecordSettings? _cnameRecordSettings;
-        
-        public DnsRecordsVerifier(ILookupClient lookupClient, DomainVerifierSettings settings)
+
+        public DnsRecordsVerifier(ILookupClient lookupClient, DomainVerifierSettings? settings)
         {
-            _txtRecordOptions = settings.TxtRecordSettings;
-            _cnameRecordSettings = settings.CnameRecordSettings;
+            _txtRecordSettings = settings?.TxtRecordSettings;
+            _cnameRecordSettings = settings?.CnameRecordSettings;
             _lookupClient = lookupClient;
         }
 
@@ -24,11 +24,11 @@ namespace DomainVerifier.Services
         public async Task<bool> IsTxtRecordValidAsync(string domainName, string verificationCode,
             TxtRecordSettings? options = null)
         {
-            ArgumentExceptionHelper.ThrowIfNullOrEmpty(options?.Hostname ?? _txtRecordOptions?.Hostname,
+            ArgumentExceptionHelper.ThrowIfNullOrEmpty(options?.Hostname ?? _txtRecordSettings?.Hostname,
                 nameof(options.Hostname));
 
-            var hostname = options?.Hostname ?? _txtRecordOptions?.Hostname;
-            var recordAttribute = options?.RecordAttribute ?? _txtRecordOptions?.RecordAttribute;
+            var hostname = options?.Hostname ?? _txtRecordSettings?.Hostname;
+            var recordAttribute = options?.RecordAttribute ?? _txtRecordSettings?.RecordAttribute;
             var record = recordAttribute switch
             {
                 _ when !string.IsNullOrEmpty(recordAttribute) => $"{recordAttribute}={verificationCode}",
@@ -50,7 +50,7 @@ namespace DomainVerifier.Services
         }
 
         /// <inheritdoc />
-        public async Task<bool> IsCnsRecordValidAsync(string domainName, string verificationCode,
+        public async Task<bool> IsCnameRecordValidAsync(string domainName, string verificationCode,
             CnameRecordSettings? options = null)
         {
             ArgumentExceptionHelper.ThrowIfNullOrEmpty(options?.RecordTarget ?? _cnameRecordSettings?.RecordTarget,

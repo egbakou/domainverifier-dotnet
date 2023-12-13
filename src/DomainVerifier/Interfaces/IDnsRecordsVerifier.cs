@@ -1,5 +1,5 @@
-using System.Threading.Tasks;
 using DomainVerifier.Settings;
+using System.Threading.Tasks;
 
 namespace DomainVerifier.Interfaces
 {
@@ -21,6 +21,6 @@ namespace DomainVerifier.Interfaces
         /// <param name="verificationCode">The CNS record to verify.</param>
         /// <param name="options">Config used to generate the CNS record.</param>
         /// <returns>True if the CNS record is valid, false otherwise.</returns>
-        Task<bool> IsCnsRecordValidAsync(string domainName, string verificationCode, CnameRecordSettings? options = null);
+        Task<bool> IsCnameRecordValidAsync(string domainName, string verificationCode, CnameRecordSettings? options = null);
     }
 }
