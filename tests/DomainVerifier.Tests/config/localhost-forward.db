@@ -1,0 +1,13 @@
+$TTL 3h
+localhost.  SOA      localhost.  nobody.localhost. 42  1d  12h  1w  3h
+            NS       localhost.
+            A        127.0.0.1
+            AAAA     ::1
+
+; TXT records
+@      TXT      "ownership-demo-app=random000454"
+ownership-demo-app-verification      TXT      "random000455"
+
+; CNAME records
+www         CNAME    localhost.
+random000454  CNAME    ownership-demo-app.com.

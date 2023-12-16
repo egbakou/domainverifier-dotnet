@@ -1,0 +1,9 @@
+$TTL 1D
+@        IN        SOA  localhost. root.localhost. (
+                        2007091701 ; serial
+                        30800      ; refresh
+                        7200       ; retry
+                        604800     ; expire
+                        300 )      ; minimum
+         IN        NS    localhost.
+1        IN        PTR   localhost.
