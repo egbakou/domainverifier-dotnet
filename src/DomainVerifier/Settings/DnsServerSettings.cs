@@ -8,6 +8,11 @@ namespace DomainVerifier.Settings
 
         public int Port { get; set; }
 
+        public DnsServerSettings()
+        {
+            IpAddress = string.Empty;
+            Port = 53;
+        }
         public DnsServerSettings(string ipAddress, int port, string? name)
         {
             Name = name;
