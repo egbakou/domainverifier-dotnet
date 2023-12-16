@@ -46,7 +46,7 @@ namespace DomainVerifier.Services
             if (queryResponse.HasError) return false;
 
             var txtRecords = queryResponse.Answers.TxtRecords();
-            return txtRecords != null && txtRecords.Any(txtRecord => txtRecord.Text.Any(x => x == record));
+            return txtRecords?.Any(txtRecord => txtRecord.Text.Any(x => x == record)) ?? false;
         }
 
         /// <inheritdoc />
@@ -56,7 +56,7 @@ namespace DomainVerifier.Services
             ArgumentExceptionHelper.ThrowIfNullOrEmpty(options?.RecordTarget ?? _cnameRecordSettings?.RecordTarget,
                 nameof(options.RecordTarget));
 
-            var recordTarget = options?.RecordTarget ?? _cnameRecordSettings?.RecordTarget;
+            var recordTarget = $"{options?.RecordTarget ?? _cnameRecordSettings?.RecordTarget}.";
             var hostQuery = $"{verificationCode}.{domainName}";
 
             var queryResponse = await _lookupClient.QueryAsync(hostQuery, QueryType.CNAME);
@@ -64,7 +64,7 @@ namespace DomainVerifier.Services
             if (queryResponse.HasError) return false;
 
             var cnameRecords = queryResponse.Answers.CnameRecords();
-            return cnameRecords != null && cnameRecords.Any(cnameRecord => cnameRecord.CanonicalName == $"{recordTarget}.");
+            return cnameRecords?.Any(cnameRecord => cnameRecord.CanonicalName == recordTarget) ?? false;
         }
     }
 }
