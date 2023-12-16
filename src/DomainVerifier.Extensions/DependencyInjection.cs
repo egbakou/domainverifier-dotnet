@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using DnsClient;
 using DomainVerifier.Interfaces;
 using DomainVerifier.Services;
@@ -5,9 +8,6 @@ using DomainVerifier.Settings;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 
 namespace DomainVerifier.Extensions
 {
@@ -29,12 +29,15 @@ namespace DomainVerifier.Extensions
 
             services.AddSingleton(resolver => resolver.GetRequiredService<IOptions<DomainVerifierSettings>>().Value);
 
-            var dnsServers = configuration.GetSection("DomainVerifierSettings:DnsServers")
+            var dnsServers = configuration.GetSection("DomainVerifierSettings:DnsServerSettings")
                 .Get<List<DnsServerSettings>>();
 
-            var nameServers = (dnsServers?.Count > 0) switch
+            var filteredDnsServers = dnsServers?.Where(x => !string.IsNullOrWhiteSpace(x.IpAddress))
+                .ToList();
+
+            var nameServers = (filteredDnsServers?.Count > 0) switch
             {
-                true => dnsServers
+                true => filteredDnsServers
                     .Select(x => new IPEndPoint(IPAddress.Parse(x.IpAddress), x.Port))
                     .ToArray(),
                 _ => new[]
