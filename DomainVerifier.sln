@@ -20,6 +20,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainVerifier.Extensions",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainVerifier.Tests", "tests\DomainVerifier.Tests\DomainVerifier.Tests.csproj", "{6526B563-1513-4D82-94E7-26801FF72179}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainVerifier.Extensions.Tests", "tests\DomainVerifier.Extensions.Tests\DomainVerifier.Extensions.Tests.csproj", "{412536A0-9E33-418D-927B-D234022B7DFA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{6526B563-1513-4D82-94E7-26801FF72179}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6526B563-1513-4D82-94E7-26801FF72179}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6526B563-1513-4D82-94E7-26801FF72179}.Release|Any CPU.Build.0 = Release|Any CPU
+		{412536A0-9E33-418D-927B-D234022B7DFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{412536A0-9E33-418D-927B-D234022B7DFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{412536A0-9E33-418D-927B-D234022B7DFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{412536A0-9E33-418D-927B-D234022B7DFA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +52,7 @@ Global
 		{18C04087-D0D0-4CDF-81B4-BA7962C2DEFD} = {1D83F857-092A-46AF-B5E7-10A0329D387B}
 		{73FAEB0A-0130-41DC-839D-3B24AED451A6} = {1D83F857-092A-46AF-B5E7-10A0329D387B}
 		{6526B563-1513-4D82-94E7-26801FF72179} = {E00AFA71-EF05-4322-B381-6E35D5B68D07}
+		{412536A0-9E33-418D-927B-D234022B7DFA} = {E00AFA71-EF05-4322-B381-6E35D5B68D07}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C2E09C02-EBB0-4763-9F6F-84D881EDC419}
