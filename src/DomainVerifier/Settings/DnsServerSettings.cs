@@ -7,7 +7,7 @@ namespace DomainVerifier.Settings
         public string IpAddress { get; set; }
 
         public int Port { get; set; }
-        
+
         public DnsServerSettings(string ipAddress, int port, string? name)
         {
             Name = name;
