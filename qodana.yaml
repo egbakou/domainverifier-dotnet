@@ -17,7 +17,9 @@ dotnet:
 
 #Disable inspections
 exclude:
-  - name: AutoPropertyCanBeMadeGetOnly.Local
+  - name: AutoPropertyCanBeMadeGetOnly.Global
+  - name: UnusedMember.Global
+  - name: UnusedMethodReturnValue.Global
 #    paths:
 #      - <path/where/not/run/inspection>
 
