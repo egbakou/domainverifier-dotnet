@@ -37,7 +37,7 @@ namespace DomainVerifier.Services
                 nameof(options.Hostname));
 
             var instructions = new StringBuilder();
-            instructions.AppendLine($"Add a DNS TXT record");
+            instructions.AppendLine("Add a DNS TXT record");
             instructions.AppendLine("1. Create a TXT record in your DNS configuration for the following hostname:");
 
             var hostname = options?.Hostname ?? _txtRecordSettings?.Hostname;
