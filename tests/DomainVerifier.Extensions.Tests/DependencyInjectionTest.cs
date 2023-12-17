@@ -1,3 +1,4 @@
+using System.Linq;
 using DnsClient;
 using DomainVerifier.Interfaces;
 using DomainVerifier.Settings;
@@ -47,14 +48,12 @@ public class DependencyInjectionTest
         // Assert
         settings.Should().NotBeNull();
         
-        settings!.DnsServerSettings.Should().NotBeNull();
-        settings.DnsServerSettings!.Count.Should().Be(1);
-        settings.DnsServerSettings![0].Name.Should().Be("Local DNS Server");
         client.Should().NotBeNull();
         client!.NameServers.Should().NotBeNull();
         client.NameServers!.Count.Should().Be(1);
+        client.NameServers.First().Address.Should().Be("127.0.0.1");
             
-        settings.TxtRecordSettings.Should().NotBeNull();
+        settings!.TxtRecordSettings.Should().NotBeNull();
         settings.TxtRecordSettings!.Hostname.Should().Be("@");
         
         settings.CnameRecordSettings.Should().NotBeNull();
