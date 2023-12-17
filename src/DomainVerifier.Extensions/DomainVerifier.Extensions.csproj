@@ -1,17 +1,53 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
+    <PropertyGroup Label="Application">
         <TargetFrameworks>net8.0;net7.0;net6.0</TargetFrameworks>
         <ImplicitUsings>false</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <AssemblyName>DomainVerifier.Extensions</AssemblyName>
+        <RootNamespace>DomainVerifier.Extensions</RootNamespace>
     </PropertyGroup>
 
-    <ItemGroup>
-        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PropertyGroup Label="NuGet">
+        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+        <PackageId>DomainVerifier.Extensions</PackageId>
+        <Version>1.0.0</Version>
+        <Authors>Laurent Egbakou</Authors>
+        <Description>Domain name ownership verification(DomainVerifier) support for .NET 6.0, .NET 7.0 and .NET 8.0.</Description>
+        <Copyright>Copyright (c) Laurent Egbakou 2023</Copyright>
+        <PackageProjectUrl>https://github.com/egbakou/domainverifier-dotnet</PackageProjectUrl>
+        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+        <RepositoryUrl>https://github.com/egbakou/domainverifier-dotnet.git</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageIcon>logo.png</PackageIcon>
+        <PackageTags>dns,domain-name,domain-ownership,verification,domain-verification,txt,cname,record,dns-record</PackageTags>
+        <PackageReleaseNotes>See https://github.com/egbakou/domainverifier-dotnet/releases for release notes.</PackageReleaseNotes>
+        <PackageReadmeFile>readme.md</PackageReadmeFile>
+    </PropertyGroup>
+
+    <PropertyGroup Label="Assembly">
+        <NeutralLanguage>en</NeutralLanguage>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <DocumentationFile>bin\Release\DomainVerifier.Extensions.xml</DocumentationFile>
+        <DebugSymbols>true</DebugSymbols>
+        <Optimize>true</Optimize>
+        <DebugType>portable</DebugType>
+        <OutputPath>bin\Release\</OutputPath>
+    </PropertyGroup>
+
+    <ItemGroup Label="Package files">
+        <None Include="..\..\assets\logo.png" Pack="true" Visible="false" PackagePath=""/>
+        <None Include="..\..\nuget\extensions\readme.md" Pack="true" Visible="true" PackagePath="\"/>
+    </ItemGroup>
+
+    <ItemGroup Label="Framework references">
+        <FrameworkReference Include="Microsoft.AspNetCore.App"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DomainVerifier\DomainVerifier.csproj" />
+        <ProjectReference Include="..\DomainVerifier\DomainVerifier.csproj"/>
     </ItemGroup>
 
 </Project>
