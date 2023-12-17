@@ -48,9 +48,6 @@ jobs:
     name: Container Tests
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    strategy:
-      matrix:
-        dotnet: [ '8.0.x', '7.0.x', '6.0.x' ]
     steps:
       - name: Check out code
         uses: actions/checkout@v3
@@ -58,7 +55,10 @@ jobs:
       - name: Install .NET Core SDK
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: ${{ matrix.dotnet }}
+          dotnet-version: |
+            8.0.x
+            7.0.x
+            6.0.x
 
       - name: Run tests
         run: dotnet test -c Release /p:CollectCoverage=true /p:CoverletOutput=TestResult /p:CoverletOutputFormat=lcov
