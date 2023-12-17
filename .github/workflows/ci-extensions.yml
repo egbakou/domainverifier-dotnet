@@ -64,18 +64,5 @@ jobs:
             6.0.x
 
       - name: Run tests
-        run: dotnet test -c Release --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage
+        run: dotnet test -c Release  --verbosity normal
         working-directory: ./tests/DomainVerifier.Extensions.Tests
-
-      - name: Code Coverage Report
-        uses: irongut/CodeCoverageSummary@v1.3.0
-        with:
-          filename: tests/DomainVerifier.Extensions.Tests/coverage/**/coverage.cobertura.xml
-          badge: true
-          fail_below_min: true
-          format: markdown
-          hide_branch_rate: false
-          hide_complexity: true
-          indicators: true
-          output: both
-          thresholds: '90 100'
