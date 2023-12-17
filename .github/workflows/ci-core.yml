@@ -6,23 +6,57 @@ name: .NET
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - 'DomainVerier.sln'
+      - 'src/DomainVerifier/**'
+      - 'tests/DomainVerifier.Tests/**'
   pull_request:
     branches: [ "main" ]
+    paths:
+      - 'DomainVerier.sln'
+      - 'src/DomainVerifier/**'
+      - 'tests/DomainVerifier.Tests/**'
+  workflow_dispatch:
 
 jobs:
-  build:
-
+  compile:
+    name: Build
     runs-on: ubuntu-latest
-
+    timeout-minutes: 10
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 6.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Install .NET SDK 8.0.x
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.0.x
+          
+      - name: Restore dependencies
+        run: dotnet restore
+        working-directory: ./src/DomainVerifier
+
+      - name: Restore NuGet packages
+        run: dotnet build -c Release --no-restore
+        working-directory: ./src/DomainVerifier
+  
+  
+  test-containers:
+    name: Container Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Install .NET Core SDK
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: |
+            8.0.x
+            7.0.x
+            6.0.x
+
+      - name: Run tests
+        run: dotnet test -c Release /p:CollectCoverage=true /p:CoverletOutput=TestResult /p:CoverletOutputFormat=lcov
+        working-directory: ./tests/DomainVerifier.Tests
