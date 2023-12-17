@@ -1,0 +1,62 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: .NET
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'DomainVerier.sln'
+      - 'src/DomainVerifier/**'
+      - 'tests/DomainVerifier.Tests/**'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'DomainVerier.sln'
+      - 'src/DomainVerifier/**'
+      - 'tests/DomainVerifier.Tests/**'
+  workflow_dispatch:
+
+jobs:
+  compile:
+    name: Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Install .NET SDK 8.0.x
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.0.x
+          
+      - name: Restore dependencies
+        run: dotnet restore
+        working-directory: ./src/DomainVerifier
+
+      - name: Restore NuGet packages
+        run: dotnet build -c Release --no-restore
+        working-directory: ./src/DomainVerifier
+  
+  
+  test-containers:
+    name: Container Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Install .NET Core SDK
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: |
+            8.0.x
+            7.0.x
+            6.0.x
+
+      - name: Run tests
+        run: dotnet test -c Release /p:CollectCoverage=true /p:CoverletOutput=TestResult /p:CoverletOutputFormat=lcov
+        working-directory: ./tests/DomainVerifier.Tests
