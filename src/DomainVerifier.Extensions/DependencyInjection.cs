@@ -27,12 +27,14 @@ namespace DomainVerifier.Extensions
                 .ValidateDataAnnotations()
                 .ValidateOnStart();
 
-            services.AddSingleton(resolver => resolver.GetRequiredService<IOptions<DomainVerifierSettings>>().Value);
+            services.AddSingleton(resolver =>
+                resolver.GetRequiredService<IOptions<DomainVerifierSettings>>().Value);
 
-            var dnsServers = configuration.GetSection("DomainVerifierSettings:DnsServerSettings")
-                .Get<List<DnsServerSettings>>();
+            var dnsServers = configuration.GetSection("DomainVerifierSettings:DnsServers")
+                .Get<List<DnsServer>>();
 
-            var filteredDnsServers = dnsServers?.Where(x => !string.IsNullOrWhiteSpace(x.IpAddress))
+            var filteredDnsServers = dnsServers?
+                .Where(x => !string.IsNullOrWhiteSpace(x.IpAddress))
                 .ToList();
 
             var nameServers = (filteredDnsServers?.Count > 0) switch
