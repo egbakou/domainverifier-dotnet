@@ -2,6 +2,9 @@ using DomainVerifier.Settings;
 
 namespace DomainVerifier.Interfaces
 {
+    /// <summary>
+    /// DnsRecordsGenerator interface.
+    /// </summary>
     public interface IDnsRecordsGenerator
     {
         /// <summary>

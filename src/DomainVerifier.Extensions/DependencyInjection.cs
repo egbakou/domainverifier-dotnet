@@ -11,6 +11,9 @@ using Microsoft.Extensions.Options;
 
 namespace DomainVerifier.Extensions
 {
+    /// <summary>
+    ///  Dependency injection extensions.
+    /// </summary>
     public static class DependencyInjection
     {
         /// <summary>

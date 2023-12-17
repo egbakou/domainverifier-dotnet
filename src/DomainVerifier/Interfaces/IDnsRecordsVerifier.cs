@@ -3,6 +3,9 @@ using System.Threading.Tasks;
 
 namespace DomainVerifier.Interfaces
 {
+    /// <summary>
+    /// DnsRecordsVerifier interface.
+    /// </summary>
     public interface IDnsRecordsVerifier
     {
         /// <summary>
