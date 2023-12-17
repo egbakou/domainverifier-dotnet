@@ -1,0 +1,16 @@
+<mxfile host="app.diagrams.net" modified="2023-12-17T00:49:35.094Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0" etag="jjT1D--O_FF8TkVEbYZI" version="22.1.11" type="device">
+  <diagram name="Page-1" id="nl7I8GsZ7s0WiH3_xZH9">
+    <mxGraphModel dx="1426" dy="751" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="7E4WaKXLYvAgXXw-_ntK-2" value="" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=#314354;fillColor=#647687;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.veeam2.dns;fontColor=#ffffff;" parent="1" vertex="1">
+          <mxGeometry x="358" y="688" width="127" height="127" as="geometry" />
+        </mxCell>
+        <mxCell id="7E4WaKXLYvAgXXw-_ntK-3" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn1.iconfinder.com/data/icons/icons-for-a-site-1/64/advantage_protection-128.png" parent="1" vertex="1">
+          <mxGeometry x="384" y="716" width="75" height="75" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
