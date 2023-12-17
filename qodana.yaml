@@ -13,10 +13,10 @@ dotnet:
 #include:
 #  - name: <SomeEnabledInspectionId>
 #Disable inspections
-exclude:
-  - name: AutoPropertyCanBeMadeGetOnly.Local
-  - name: UnusedMember.Local
-  - name: UnusedMethodReturnValue.Local
+#exclude:
+#  - name: AutoPropertyCanBeMadeGetOnly.Local
+#  - name: UnusedMember.Local
+#  - name: UnusedMethodReturnValue.Local
 #    paths:
 #      - <path/where/not/run/inspection>
 #Execute shell command before Qodana execution (Applied in CI/CD pipeline)
