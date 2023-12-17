@@ -10,14 +10,14 @@ on:
       - 'DomainVerier.sln'
       - 'src/DomainVerifier/**'
       - 'tests/DomainVerifier.Tests/**'
-      - '**/core-ci.yml'
+      - '**/ci-core.yml'
   pull_request:
     branches: [ "main" ]
     paths:
       - 'DomainVerier.sln'
       - 'src/DomainVerifier/**'
       - 'tests/DomainVerifier.Tests/**'
-      - '**/core-ci.yml'
+      - '**/ci-core.yml'
   workflow_dispatch:
 
 jobs:
