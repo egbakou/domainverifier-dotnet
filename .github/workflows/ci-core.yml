@@ -48,6 +48,9 @@ jobs:
     name: Tests
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    strategy:
+      matrix:
+        framework: [ 'net8.0', 'net7.0', 'net6.0' ]
     steps:
       - name: Check out code
         uses: actions/checkout@v3
@@ -61,13 +64,13 @@ jobs:
             6.0.x
 
       - name: Run tests
-        run: dotnet test -c Release --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage
+        run: dotnet test -c Release --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage/${{ matrix.framework }}
         working-directory: ./tests/DomainVerifier.Tests
         
       - name: Code Coverage Report
         uses: irongut/CodeCoverageSummary@v1.3.0
         with:
-          filename: tests/DomainVerifier.Tests/coverage/**/coverage.cobertura.xml
+          filename: tests/DomainVerifier.Tests/coverage/${{ matrix.framework }}/coverage.cobertura.xml
           badge: true
           fail_below_min: true
           format: markdown
