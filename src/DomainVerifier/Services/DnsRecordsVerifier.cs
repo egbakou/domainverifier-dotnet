@@ -1,18 +1,46 @@
+using System.Linq;
+using System.Threading.Tasks;
 using DnsClient;
 using DomainVerifier.Helpers;
 using DomainVerifier.Interfaces;
 using DomainVerifier.Settings;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DomainVerifier.Services
 {
+    /// <summary>
+    /// This service checks if a domain is verified by looking at its DNS records.
+    /// </summary>
+    /// <example>
+    /// A basic example of how to use this service:
+    /// <code>
+    /// var client = new LookupClient(NameServer.Cloudflare, NameServer.GooglePublicDns);
+    /// var txtSettings = new TxtRecordSettings
+    /// {
+    ///    Hostname = "@",
+    ///    RecordAttribute = "myapp-verification-code"
+    /// };
+    /// var cnameSettings = new CnameRecordSettings
+    /// {
+    ///    RecordTarget = "verify.my-app.com"
+    /// };
+    /// var settings = new DomainVerifierSettings(txtSettings, cnameSettings);
+    /// var verifier = new DnsRecordsVerifier(client, settings);
+    /// var domainName = "user-domain.com";
+    /// var verificationCode = "myapp-verification-code"; // retrieved from database
+    /// var isTxtRecordValid = verifier.IsTxtRecordValidAsync(domainName, verificationCode);
+    /// </code>
+    /// </example>
     public class DnsRecordsVerifier : IDnsRecordsVerifier
     {
         private readonly ILookupClient _lookupClient;
         private readonly TxtRecordSettings? _txtRecordSettings;
         private readonly CnameRecordSettings? _cnameRecordSettings;
 
+        /// <summary>
+        ///  Initializes a new instance of the <see cref="DnsRecordsVerifier" /> class.
+        /// </summary>
+        /// <param name="lookupClient">Dns lookup client.</param>
+        /// <param name="settings">The settings.</param>
         public DnsRecordsVerifier(ILookupClient lookupClient, DomainVerifierSettings? settings)
         {
             _txtRecordSettings = settings?.TxtRecordSettings;

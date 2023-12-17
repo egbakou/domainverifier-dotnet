@@ -8,11 +8,27 @@ using DomainVerifier.Settings;
 
 namespace DomainVerifier.Services
 {
+    /// <summary>
+    /// This class serves as a helper for generating DNS records required for domain verification.
+    /// In addition to record generation, it offers convenient methods to display instructions
+    /// guiding users through the process of adding these DNS records to their DNS configuration.
+    /// </summary>
+    /// <example>
+    /// A basic example of how to use this helper:
+    /// <code>
+    /// var generator = new DnsRecordsGenerator();
+    /// var verificationCode = generator.GenerateDnsRecord(15);
+    /// </code>
+    /// </example>
     public sealed class DnsRecordsGenerator : IDnsRecordsGenerator
     {
         private readonly TxtRecordSettings? _txtRecordSettings;
         private readonly CnameRecordSettings? _cnameRecordSettings;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DnsRecordsGenerator"/> class.
+        /// </summary>
+        /// <param name="settings">The settings.</param>
         public DnsRecordsGenerator(DomainVerifierSettings settings)
         {
             _txtRecordSettings = settings.TxtRecordSettings;
