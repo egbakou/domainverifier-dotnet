@@ -8,7 +8,7 @@ on:
 
 jobs:
   publish:
-    name: Pack & publish ${{ github.event.release.name }}
+    name: Pack & publish
     runs-on: ubuntu-latest
     if: contains(github.event.release.name, 'core')
     

@@ -8,13 +8,12 @@ on:
 
 jobs:
   publish:
-    name: Pack & publish ${{ github.event.release.name }}
+    name: Pack & publish
     runs-on: ubuntu-latest
     if: contains(github.event.release.name, 'extensions')
     strategy:
       matrix:
         dotnet-version: [ '8.0.x', '7.0.x', '6.0.x' ]
-    
     steps:
       - name: Check out code
         uses: actions/checkout@v3
