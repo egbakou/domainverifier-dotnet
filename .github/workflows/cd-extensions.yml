@@ -1,0 +1,36 @@
+name: CD DomainVerifier.Extensions
+
+on:
+  release:
+    types: [ published ]
+  workflow_dispatch:
+
+
+jobs:
+  publish:
+    name: Pack & publish ${{ github.event.release.name }}
+    runs-on: ubuntu-latest
+    if: contains(github.event.release.name, 'extensions')
+    strategy:
+      matrix:
+        dotnet-version: [ '8.0.x', '7.0.x', '6.0.x' ]
+    
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Install .NET SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+
+      - name: Pack
+        run: dotnet pack -c Release -o nupkgs
+        working-directory: ./src/DomainVerifier.Extensions
+
+      - name: Publish NuGet package
+        run: dotnet nuget push ./nupkgs/*.nupkg --source $NUGET_API_URL --api-key $NUGET_API_KEY --skip-duplicate
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+          NUGET_API_URL: https://api.nuget.org/v3/index.json
+        working-directory: ./src/DomainVerifier.Extensions
