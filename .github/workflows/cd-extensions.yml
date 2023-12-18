@@ -1,4 +1,4 @@
-name: CD DomainVerifier.Extensions
+name: DomainVerifier.Extensions CD
 
 on:
   release:
