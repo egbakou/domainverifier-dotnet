@@ -168,7 +168,7 @@ dotnet add package DomainVerifier.Extensions
 **Step 3:** Add the Domain verifier service to the service collection:
 
 ```csharp
-csharpCopy codeservices.AddDomainVerifierService(configuration);
+services.AddDomainVerifierService(configuration);
 // Or
 builder.Services.AddDomainVerifierService(builder.Configuration);
 ```
