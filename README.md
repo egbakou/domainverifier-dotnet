@@ -8,22 +8,20 @@ It consists of two projects: `DomainVerifier` and `DomainVerifier.Extensions`.
 
 The `DomainVerifier` project is a .NET Standard 2.1 project, making it compatible with .NET Core 3.0 to .NET 8. It provides core functionalities for generating domain verification codes and verifying domain ownership.
 
-The `DomainVerifier.Extensions` provides integration with [Microsoft Dependency Injection](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection) and is compatible with .NET 6, 7, and 8.
+The `DomainVerifier.Extensions` provides integration with [Dependency Injection](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection) and is compatible with .NET 6, 7, and 8.
 
 ## DomainVerifier (the core library)
 
 ### Installation
-
-
 
 ```console
 dotnet add package DomainVerifier
 ```
 
 > [!NOTE]  
-> This package is intended exclusively for utilization in .NET projects with versions earlier than 6.0. 
+> This package is specifically designed for integration with .NET projects running versions earlier than 6.0
 
-If you are working with a .NET 6, 7, or 8 application, please install the `DomainVerifier.Extensions` package instead like follow:
+If you are working with a .NET 6, 7, or 8 web or  Api application, please install the `DomainVerifier.Extensions` package instead like follow:
 
 ```console
 dotnet add package DomainVerifier.Extensions
@@ -135,7 +133,7 @@ var isOwnershipVerified = await _dnsRecordsVerifier.IsCnameRecordValidAsync(doma
 
 ## DomainVerifier.Extensions (the recommended way)
 
-`DomainVerifier.Extensions` provides integration with [Microsoft Dependency Injection](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection)
+`DomainVerifier.Extensions` provides integration with [Dependency Injection](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection)
 
 You can use it by invoking an extension method `AddDomainVerifierService` on `IServiceCollection`. The configuration building wraps various configuration properties with strongly-typed API. You can also configure properties using standard .NET `appsettings.json` inside configuration section `DomainVerifierSettings`.
 
