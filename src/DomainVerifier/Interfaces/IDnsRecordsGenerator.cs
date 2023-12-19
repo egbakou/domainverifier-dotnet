@@ -8,9 +8,10 @@ namespace DomainVerifier.Interfaces
     public interface IDnsRecordsGenerator
     {
         /// <summary>
-        /// Generates a domain name verification TXT or CNS record.
+        /// Generates a domain name verification code.
         /// </summary>
-        /// <returns> The generated record. </returns>
+        /// <param name="length"> The desired length of the generated code (default is 10). </param>
+        /// <returns> The generated code. </returns>
         string GenerateDnsRecord(int length = 10);
 
         /// <summary>
