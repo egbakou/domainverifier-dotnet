@@ -6,6 +6,9 @@ on:
     branches:
       - main
       - 'releases/*'
+    paths:
+      - 'DomainVerier.sln'
+      - 'src/**'
 
 jobs:
   qodana:
