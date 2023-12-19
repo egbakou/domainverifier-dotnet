@@ -101,7 +101,7 @@ var config = new TxtRecordSettings
 	RecordAttribute = "my-appname-verification" // Load from configurations
 };
 
-var isOwnershipVerified = _dnsRecordsVerifier.IsTxtRecordValidAsync(domainName, verificationCode, config);
+var isOwnershipVerified = await _dnsRecordsVerifier.IsTxtRecordValidAsync(domainName, verificationCode, config);
 
 // Update your database to mark the domain as verified
 ```
@@ -118,7 +118,7 @@ var config = new CnameRecordSettings
 	RecordTarget = "verify.myappname.com", // Load from configurations
 };
 
-var isOwnershipVerified = _dnsRecordsVerifier.IsCnameRecordValidAsync(domainName, verificationCode, config);
+var isOwnershipVerified = await _dnsRecordsVerifier.IsCnameRecordValidAsync(domainName, verificationCode, config);
 
 // Update your database to mark the domain as verified
 ```
@@ -138,7 +138,7 @@ This package extends the functionality of `DomainVerifier` to support .NET 6, 7,
 
 **Step 1:** Install the `DomainVerifier.Extensions` [NuGet package](https://www.nuget.org/packages/DomainVerifier.Extensions) in your application.
 
-```typescript
+```console
 dotnet add package DomainVerifier.Extensions
 ```
 
