@@ -172,8 +172,6 @@ dotnet add package DomainVerifier.Extensions
 
 ```csharp
 services.AddDomainVerifierService(configuration);
-// Or
-builder.Services.AddDomainVerifierService(builder.Configuration);
 ```
 
 `DnsRecordsGenerator` and `DnsRecordsVerifier` are already registered with the dependency injection containers.
