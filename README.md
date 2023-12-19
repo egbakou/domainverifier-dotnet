@@ -14,7 +14,7 @@ The `DomainVerifier.Extensions` project extends the functionality of `DomainChec
 
 ### Installation
 
-```typescript
+```console
 dotnet add package DomainVerifier
 ```
 
@@ -22,7 +22,7 @@ dotnet add package DomainVerifier
 
 If you are working with a .NET 6, 7, or 8 application, please install the `DomainVerifier.Extensions` package instead like follow:
 
-```typescript
+```console
 dotnet add package DomainVerifier.Extensions
 ```
 
