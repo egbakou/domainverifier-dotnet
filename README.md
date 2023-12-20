@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/egbakou/domainverifier-dotnet/actions/workflows/ci-core.yml/badge.svg)](https://github.com/egbakou/domainverifier-dotnet/actions/workflows/ci-core.yml) [![CI](https://github.com/egbakou/domainverifier-dotnet/actions/workflows/ci-extensions.yml/badge.svg)](https://github.com/egbakou/domainverifier-dotnet/actions/workflows/ci-extensions.yml)
 
-domainverifier-dotent  is a .NET library project designed to simplify domain name ownership verification. 
+`domainverifier-dotent`  is a .NET library project designed to simplify domain name ownership verification. 
 
 It consists of two projects: `DomainVerifier` and `DomainVerifier.Extensions`. 
 
@@ -29,7 +29,7 @@ dotnet add package DomainVerifier.Extensions
 
 ### Overview
 
-The `DomainChecker` project includes a `DnsRecordsGenerator` class that implements the `DnsRecordsGenerator`  as well as a `DnsRecordsVerifier` class that implements the `IDnsRecordsVerifier` interface. These classes offer convenient methods for generating domain verification codes and verifying ownership through DNS records(TXT and CNAME)
+The `DomainVerifier` project includes a `DnsRecordsGenerator` class that implements the `DnsRecordsGenerator`  as well as a `DnsRecordsVerifier` class that implements the `IDnsRecordsVerifier` interface. These classes offer convenient methods for generating domain verification codes and verifying ownership through DNS records(TXT and CNAME)
 
 ### 🔑 DnsRecordsGenerator 
 
