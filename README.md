@@ -2,13 +2,13 @@
 
 [![CI](https://github.com/egbakou/domainverifier-dotnet/actions/workflows/ci-core.yml/badge.svg)](https://github.com/egbakou/domainverifier-dotnet/actions/workflows/ci-core.yml) [![CI](https://github.com/egbakou/domainverifier-dotnet/actions/workflows/ci-extensions.yml/badge.svg)](https://github.com/egbakou/domainverifier-dotnet/actions/workflows/ci-extensions.yml)
 
-`domainverifier-dotent`  is a .NET library project designed to simplify domain name ownership verification. 
+`domainverifier-dotnet`  is a .NET library project designed to simplify domain name ownership verification. 
 
 It consists of two projects: `DomainVerifier` and `DomainVerifier.Extensions`. 
 
-The `DomainVerifier` project is a .NET Standard 2.1 project, making it compatible with .NET Core 3.0 to .NET 8. It provides core functionalities for generating domain verification codes and verifying domain ownership.
+The `DomainVerifier` project is a .NET Standard 2.1 project that is compatible with .NET Core 3.0 to .NET 8. It provides core functionalities for generating domain verification codes and verifying domain ownership.
 
-The `DomainVerifier.Extensions` provides integration with [Dependency Injection](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection) and is compatible with .NET 6, 7, and 8.
+The `DomainVerifier.Extensions` project provides integration with [Dependency Injection](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection) and is compatible with .NET 6, 7, and 8.
 
 ## DomainVerifier (the core library)
 
@@ -29,11 +29,11 @@ dotnet add package DomainVerifier.Extensions
 
 ### Overview
 
-The `DomainVerifier` project includes a `DnsRecordsGenerator` class that implements the `DnsRecordsGenerator`  as well as a `DnsRecordsVerifier` class that implements the `IDnsRecordsVerifier` interface. These classes offer convenient methods for generating domain verification codes and verifying ownership through DNS records(TXT and CNAME)
+The `DomainVerifier` project includes a `DnsRecordsGenerator` class that implements the `DnsRecordsGenerator` interface  as well as a `DnsRecordsVerifier` class that implements the `IDnsRecordsVerifier` interface. These classes offer convenient methods for generating domain verification codes and verifying ownership through DNS records(TXT and CNAME)
 
 ### 🔑 DnsRecordsGenerator 
 
-It can be injected into into your service class or controller suing it interface or instantiated directly.
+It can be injected into into your service class or controller using its interface or instantiated directly.
 
 The `DnsRecordsGenerator` class provides the following methods:
 
@@ -69,9 +69,9 @@ string instructions = _dnsRecordsGenerator.GetTxtInstructions(domainNameToVerify
 
 This method serves the same purpose as the previous one but for CNAME records.
 
-It provides users with instructions on adding the CNAME record to their DNS settings.
+It provides users with instructions for adding the CNAME record to their DNS settings.
 
-The `CnameRecordSettings` is a configuration class that includes the `RecordTarget` (representing the target of the CNAME record). This configuration class is also optional if the `DnsRecordsGenerator` has already been instantiated with the `DomainVerifierSettings`.
+The `CnameRecordSettings` is a configuration class that includes the `RecordTarget` (representing the target of the CNAME record). This configuration class is also optional if the `DnsRecordsGenerator` has been instantiated with the `DomainVerifierSettings`.
 
 ```csharp
 const string domainNameToVerify = "the-domain-to-verify.com";
@@ -85,9 +85,9 @@ string instructions = _dnsRecordsGenerator.GetCnameInstructions(domainNameToVeri
 
 ### 🔍DnsRecordsVerifier
 
-The `DnsRecordsVerifier` class is  a service designed to validate whether verification codes are configured in the DNS settings of a given domain name, thereby establishing ownership proof.
+The `DnsRecordsVerifier` class is  a service designed to validate whether verification codes are configured in the DNS settings of a given domain name, thereby proving ownership.
 
-It has two method `IsTxtRecordValidAsync` and `IsCnameRecordValidAsync` that return true or false wheatear the ownership is verified.
+It has two methods: `IsTxtRecordValidAsync` and `IsCnameRecordValidAsync`, which return true or false depending on whether the ownership is verified.
 
 #### `async Task<bool> IsTxtRecordValidAsync(string domainName, string verificationCode, TxtRecordSettings? options = null)`
 
@@ -126,16 +126,16 @@ var isOwnershipVerified = await _dnsRecordsVerifier.IsCnameRecordValidAsync(doma
 
 #### 🌟 Best Practices
 
-- Optimize the verification process by executing it in the background using .NET Hosted services or Background services. Additionally, provide an endpoint for users to trigger the verification process.
-- In scenarios where multiple users attempt to claim ownership of a specific domain, generate a unique verification code for each of them. The rightful owner will be able to prove ownership using the respective code.
+- Optimize the verification process by executing it in the background using .NET hosted services or background services. Additionally, provide an endpoint that users can use to trigger the verification process.
+- In scenarios where multiple users attempt to claim ownership of a specific domain, generate a unique verification code for each user. The rightful owner will be able to prove ownership using the respective code.
 
 
 
 ## DomainVerifier.Extensions (the recommended way)
 
-`DomainVerifier.Extensions` provides integration with [Dependency Injection](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection)
+`DomainVerifier.Extensions` project provides integration with [Dependency Injection](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection)
 
-You can use it by invoking an extension method `AddDomainVerifierService` on `IServiceCollection`. The configuration building wraps various configuration properties with strongly-typed API. You can also configure properties using standard .NET `appsettings.json` inside configuration section `DomainVerifierSettings`.
+You can use it by invoking the `AddDomainVerifierService` extension method on `IServiceCollection`. The configuration builder wraps various configuration properties with strongly-typed API. You can also configure properties using standard .NET `appsettings.json` inside configuration section `DomainVerifierSettings`.
 
 ### Instructions
 
