@@ -26,7 +26,7 @@ namespace DomainVerifier.Services
     /// var settings = new DomainVerifierSettings(txtSettings, cnameSettings);
     /// var verifier = new DnsRecordsVerifier(client, settings);
     /// var domainName = "user-domain.com";
-    /// var verificationCode = "myapp-verification-code"; // retrieved from database
+    /// var verificationCode = "random-verification-code"; // retrieved from database
     /// var isTxtRecordValid = verifier.IsTxtRecordValidAsync(domainName, verificationCode);
     /// </code>
     /// </example>
