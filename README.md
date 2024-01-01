@@ -1,6 +1,6 @@
 <div style="text-align:center"><img src="assets/logo.png" width=80 /></div>
 
-[![CI](https://github.com/egbakou/domainverifier-dotnet/actions/workflows/ci-core.yml/badge.svg)](https://github.com/egbakou/domainverifier-dotnet/actions/workflows/ci-core.yml) [![CI](https://github.com/egbakou/domainverifier-dotnet/actions/workflows/ci-extensions.yml/badge.svg)](https://github.com/egbakou/domainverifier-dotnet/actions/workflows/ci-extensions.yml) ![Nuget](https://img.shields.io/nuget/v/DomainVerifier?style=flat&label=DomainVerifier) ![Nuget](https://img.shields.io/nuget/v/DomainVerifier.Extensions?style=flat&label=DomainVerifier.Extensions)
+[![CI](https://github.com/egbakou/domainverifier-dotnet/actions/workflows/ci-core.yml/badge.svg)](https://github.com/egbakou/domainverifier-dotnet/actions/workflows/ci-core.yml) [![CI](https://github.com/egbakou/domainverifier-dotnet/actions/workflows/ci-extensions.yml/badge.svg)](https://github.com/egbakou/domainverifier-dotnet/actions/workflows/ci-extensions.yml) [![Nuget](https://img.shields.io/nuget/v/DomainVerifier?style=flat&label=DomainVerifier)](https://www.nuget.org/packages/DomainVerifier) [![Nuget](https://img.shields.io/nuget/v/DomainVerifier.Extensions?style=flat&label=DomainVerifier.Extensions)](https://www.nuget.org/packages/DomainVerifier.Extensions)
 
 
 
