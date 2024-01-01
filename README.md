@@ -152,7 +152,7 @@ dotnet add package DomainVerifier.Extensions
   "DomainVerifierSettings": {
     "DnsServers": [ // Optional
       {
-        "Name": "My Custom DNS Server Name",
+        "Name": "My Custom DNS Server Name", // Optional
         "IpAddress": "127.0.0.1",
         "Port": 53
       }
@@ -180,11 +180,71 @@ services.AddDomainVerifierService(configuration);
 
 Simply inject the `IDnsRecordsGenerator` or `IDnsRecordsVerifier` interface into your service class or controller.
 
+Explore the [example project](https://github.com/egbakou/domainverifier-dotnet/tree/main/examples) available in the examples folder. This project is built on .NET 8 minimal Api and featuring the following technology stack:
 
+- Database support (Sqlite)
+- Vertical slice architecture
+- Quartz for job scheduling
+- The new Identity API endpoints
+
+The sample project provides a range of endpoints, offering a comprehensive demonstration of the implementation. Refer to the [Screenshot] for a visual overview of these endpoints.
+
+![](assets/sample-swagger.png)
+
+In addition to the showcased endpoints, the example project includes the source code for the Quartz background job responsible for processing ownership verification every 5 minutes. 
+
+```c#
+[DisallowConcurrentExecution]
+public class ProcessVerificationJob : IJob
+{
+    private readonly ApplicationDbContext _dbContext;
+    // 👇 Inject the IDnsRecordsVerifier interface from DomainVerifier.Extensions
+    private readonly IDnsRecordsVerifier _dnsRecordsVerifier;
+
+    public ProcessVerificationJob(
+        ApplicationDbContext dbContext,
+        IDnsRecordsVerifier dnsRecordsVerifier)
+    {
+        _logger = logger;
+        _dbContext = dbContext;
+        _dnsRecordsVerifier = dnsRecordsVerifier;
+    }
+
+    public async Task Execute(IJobExecutionContext context)
+    {
+        var unVerifiedDomains = await _dbContext.Domains
+            .Where(x => !x.IsVerified && !_dbContext.Domains
+                .Any(y => y.IsVerified && y.DomainName == x.DomainName))
+            .OrderBy(x => x.VerificationDate)
+            .Take(20)
+            .ToListAsync(context.CancellationToken);
+
+        foreach (var domain in unVerifiedDomains)
+        {
+            domain.VerificationDate = DateTime.UtcNow;
+            //  // 👇 Verification
+            var isVerificationCompleted =
+                await _dnsRecordsVerifier.IsTxtRecordValidAsync(domain.DomainName, domain.VerificationCode)
+                || await _dnsRecordsVerifier.IsCnameRecordValidAsync(domain.DomainName, domain.VerificationCode);
+                
+            if (isVerificationCompleted)
+            {
+                domain.IsVerified = true;
+                domain.VerificationCompletedDate = DateTime.UtcNow;
+            }
+        }
+            
+        _dbContext.UpdateRange(unVerifiedDomains);
+        await _dbContext.SaveChangesAsync(context.CancellationToken);
+    }
+}
+```
+
+Feel free to adapt and integrate it into your own project.
 
 ## Contributing
 
-Contributions to domainverifier-dotnet are very welcome. For guidance, please see [CONTRIBUTING.md](https://github.com/egbakou/domainverifier-dotnet/blob/main/CONTRIBUTING.md)
+Contributions to `domainverifier-dotnet` are very welcome. For guidance, please see [CONTRIBUTING.md](https://github.com/egbakou/domainverifier-dotnet/blob/main/CONTRIBUTING.md)
 
 
 
