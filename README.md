@@ -187,7 +187,7 @@ Explore the [example project](https://github.com/egbakou/domainverifier-dotnet/t
 - Quartz for job scheduling
 - The new Identity API endpoints
 
-The sample project provides a range of endpoints, offering a comprehensive demonstration of the implementation. Refer to the [Screenshot] for a visual overview of these endpoints.
+The sample project provides a range of endpoints, offering a comprehensive demonstration of the implementation. Refer to the following screenshot for a visual overview of these endpoints.
 
 ![](assets/sample-swagger.png)
 
@@ -222,12 +222,12 @@ public class ProcessVerificationJob : IJob
         foreach (var domain in unVerifiedDomains)
         {
             domain.VerificationDate = DateTime.UtcNow;
-            //  // 👇 Verification
-            var isVerificationCompleted =
+            // 👇 Verification
+            var isVerificationSucceeded =
                 await _dnsRecordsVerifier.IsTxtRecordValidAsync(domain.DomainName, domain.VerificationCode)
                 || await _dnsRecordsVerifier.IsCnameRecordValidAsync(domain.DomainName, domain.VerificationCode);
                 
-            if (isVerificationCompleted)
+            if (isVerificationSucceeded)
             {
                 domain.IsVerified = true;
                 domain.VerificationCompletedDate = DateTime.UtcNow;
