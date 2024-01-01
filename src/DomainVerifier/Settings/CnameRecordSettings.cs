@@ -10,14 +10,14 @@ namespace DomainVerifier.Settings
         ///  The target of the CNAME record.
         /// </summary>
         public string? RecordTarget { get; set; }
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="CnameRecordSettings"/> class.
         /// </summary>
         public CnameRecordSettings()
         {
         }
-        
+
         /// <summary>
         ///  Initializes a new instance of the <see cref="CnameRecordSettings"/> class with the specified record target.
         /// </summary>

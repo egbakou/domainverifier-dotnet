@@ -1,9 +1,9 @@
-using System.Linq;
-using System.Threading.Tasks;
 using DnsClient;
 using DomainVerifier.Helpers;
 using DomainVerifier.Interfaces;
 using DomainVerifier.Settings;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace DomainVerifier.Services
 {

@@ -1,10 +1,10 @@
+using DomainVerifier.Helpers;
+using DomainVerifier.Interfaces;
+using DomainVerifier.Settings;
 using System;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
-using DomainVerifier.Helpers;
-using DomainVerifier.Interfaces;
-using DomainVerifier.Settings;
 
 namespace DomainVerifier.Services
 {
