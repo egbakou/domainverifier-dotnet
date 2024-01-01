@@ -21,7 +21,6 @@
         <PackageIcon>logo.png</PackageIcon>
         <PackageTags>dns,domain-name,domain-ownership,verification,domain-verification,txt,cname,record,dns-record</PackageTags>
         <PackageReleaseNotes>See https://github.com/egbakou/domainverifier-dotnet/releases for release notes.</PackageReleaseNotes>
-        <PackageReadmeFile>readme.md</PackageReadmeFile>
     </PropertyGroup>
     
     <PropertyGroup Label="Assembly">
@@ -38,7 +37,6 @@
 
     <ItemGroup Label="Package files">
         <None Include="..\..\assets\logo.png" Pack="true" Visible="false" PackagePath=""/>
-        <None Include="..\..\nuget\core\readme.md" Pack="true" Visible="true" PackagePath="\"/>
     </ItemGroup>
 
     <ItemGroup Label="Package references">
