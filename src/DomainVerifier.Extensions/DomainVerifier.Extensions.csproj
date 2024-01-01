@@ -13,7 +13,7 @@
         <PackageId>DomainVerifier.Extensions</PackageId>
         <Version>1.0.0</Version>
         <Authors>Laurent Egbakou</Authors>
-        <Description>Domain name ownership verification with Dependency Injection support for .NET 6.0, .NET 7.0 and .NET 8.0</Description>
+        <Description>Domain name ownership verification with Dependency Injection support for .NET 6.0, .NET 7.0 and .NET 8.0.</Description>
         <Copyright>Copyright (c) Laurent Egbakou 2023</Copyright>
         <PackageProjectUrl>https://github.com/egbakou/domainverifier-dotnet</PackageProjectUrl>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>

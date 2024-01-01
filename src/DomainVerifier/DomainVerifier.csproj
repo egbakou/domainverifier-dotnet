@@ -12,7 +12,7 @@
         <PackageId>DomainVerifier</PackageId>
         <Version>1.0.0</Version>
         <Authors>Laurent Egbakou</Authors>
-        <Description>Domain name ownership verification library</Description>
+        <Description>Domain name ownership verification library.</Description>
         <Copyright>Copyright (c) Laurent Egbakou 2023</Copyright>
         <PackageProjectUrl>https://github.com/egbakou/domainverifier-dotnet</PackageProjectUrl>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
