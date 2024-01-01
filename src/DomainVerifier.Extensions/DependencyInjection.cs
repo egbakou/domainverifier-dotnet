@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using DnsClient;
 using DomainVerifier.Interfaces;
 using DomainVerifier.Services;
@@ -8,6 +5,9 @@ using DomainVerifier.Settings;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 
 namespace DomainVerifier.Extensions
 {
@@ -45,11 +45,11 @@ namespace DomainVerifier.Extensions
                 true => filteredDnsServers
                     .Select(x => new IPEndPoint(IPAddress.Parse(x.IpAddress), x.Port))
                     .ToArray(),
-                _ => new[]
-                {
+                _ =>
+                [
                     NameServer.Cloudflare,
                     NameServer.GooglePublicDns
-                }
+                ]
             };
             var client = new LookupClient(nameServers);
 
