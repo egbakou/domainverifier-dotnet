@@ -137,7 +137,7 @@ var isOwnershipVerified = await _dnsRecordsVerifier.IsCnameRecordValidAsync(doma
 
 `DomainVerifier.Extensions` project provides integration with [Dependency Injection](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection)
 
-You can use it by invoking the `AddDomainVerifierService` extension method on `IServiceCollection`. The configuration builder wraps various configuration properties with strongly-typed API. You can also configure properties using standard .NET `appsettings.json` inside configuration section `DomainVerifierSettings`.
+You can use it by invoking the `AddDomainVerifierService` extension method on `IServiceCollection`. The configuration builder wraps various configuration properties with strongly-typed API. You can also configure properties using standard .NET `appsettings.json` inside the configuration section name `DomainVerifierSettings`.
 
 ### Instructions
 
