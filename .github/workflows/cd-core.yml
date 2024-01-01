@@ -1,4 +1,4 @@
-name: DomainVerifier CD
+name: Core CD
 
 on:
   release:
