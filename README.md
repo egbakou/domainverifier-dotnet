@@ -207,7 +207,6 @@ public class ProcessVerificationJob : IJob
         ApplicationDbContext dbContext,
         IDnsRecordsVerifier dnsRecordsVerifier)
     {
-        _logger = logger;
         _dbContext = dbContext;
         _dnsRecordsVerifier = dnsRecordsVerifier;
     }
