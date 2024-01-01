@@ -13,7 +13,7 @@
         <PackageId>DomainVerifier.Extensions</PackageId>
         <Version>1.0.0</Version>
         <Authors>Laurent Egbakou</Authors>
-        <Description>Domain name ownership verification(DomainVerifier) support for .NET 6.0, .NET 7.0 and .NET 8.0.</Description>
+        <Description>Domain name ownership verification with Dependency Injection support for .NET 6.0, .NET 7.0 and .NET 8.0</Description>
         <Copyright>Copyright (c) Laurent Egbakou 2023</Copyright>
         <PackageProjectUrl>https://github.com/egbakou/domainverifier-dotnet</PackageProjectUrl>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
@@ -38,16 +38,16 @@
     </PropertyGroup>
 
     <ItemGroup Label="Package files">
-        <None Include="..\..\assets\logo.png" Pack="true" Visible="false" PackagePath=""/>
-        <None Include="..\..\nuget\extensions\readme.md" Pack="true" Visible="true" PackagePath="\"/>
+        <None Include="..\..\assets\logo.png" Pack="true" Visible="false" PackagePath="" />
+        <None Include="..\..\nuget\extensions\readme.md" Pack="true" Visible="true" PackagePath="\" />
     </ItemGroup>
 
     <ItemGroup Label="Framework references">
-        <FrameworkReference Include="Microsoft.AspNetCore.App"/>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\DomainVerifier\DomainVerifier.csproj"/>
+      <PackageReference Include="DomainVerifier" Version="1.0.0" />
     </ItemGroup>
 
 </Project>
